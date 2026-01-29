@@ -6,14 +6,14 @@ How to execute:
 
 Generates two files: `some_3dgs.gltf` and `some_3dgs.bin`.
 
-Using the optional `--convert` flag converts from right-handed z-up to right-handed y-up coordinate system by doing a -90 degree rotation, as defined and required in glTF.  
-Otherwise it is assumed that the original data is already right-handed y-up.
+Using the optional `--convert` flag converts from right-handed z-up to right-handed y-up coordinate system by doing a -90 degree rotation around the x-axis.  
+Otherwise it is assumed that the original data is already right-handed y-up as defined in glTF.
 
 Using the optional `--dump` flag is writing back the generated glTF binary buffer to the PLY file `some_3dgs_dump.ply`.
 
-## 3DGS for glTF
+## 3DGS for glTF extension
 
-- https://github.com/KhronosGroup/glTF/pull/2490
+- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_gaussian_splatting
 
 ## Build
 
@@ -41,7 +41,7 @@ Please make sure, that the given dependencies are fulfilled and your toolchain d
 
 ## Credits
 
- - Xin Zhao on the Spherical Harmonics rotation and overall debugging
+ - Xin Zhao for the Spherical Harmonics rotation discussions and overall debugging
 
 ## References
 
@@ -56,10 +56,6 @@ Please make sure, that the given dependencies are fulfilled and your toolchain d
 ### 3DGS
 
 - https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/
-
-#### 3DGS glTF extensions
-
-- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_gaussian_splatting
 
 #### 3DGS PLY Format
 

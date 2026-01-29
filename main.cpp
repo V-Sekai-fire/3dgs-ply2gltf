@@ -740,7 +740,7 @@ int main(int argc, char* argv[])
 
             if (convert)
             {
-                // Rotate the spherical harmonics as well by passive +90 degrees with optimized Wigner d-Matrix.
+                // Rotate the spherical harmonics as well by -90 degrees around x-axis with optimized Wigner d-Matrix.
                 r = rotateSH_XAxisPos90(r.data(), l);
                 g = rotateSH_XAxisPos90(g.data(), l);
                 b = rotateSH_XAxisPos90(b.data(), l);
