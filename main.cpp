@@ -448,7 +448,7 @@ int main(int argc, char* argv[])
         {
             break;
         }
-        else
+        else if (line.starts_with("property "))
         {
             char componentType[256u];
             char name[256u];
@@ -458,8 +458,9 @@ int main(int argc, char* argv[])
 #else
             auto result = std::sscanf(line.c_str(), "property %255s %255s", componentType, name);
 #endif
-            if (result < 0)
+            if (result != 2)
             {
+                printf("Error: Failed to parse property line: '%s'\n", line.c_str());
                 return -1;
             }
 
