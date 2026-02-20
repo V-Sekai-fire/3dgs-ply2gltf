@@ -152,14 +152,16 @@ std::string dumpPly(const std::string& binary, std::uint32_t count, std::uint32_
             // SCALE
             const float* data = reinterpret_cast<const float*>(binary.data() + byteStride * vertex + byteOffset);
 
+            // Log conversion.
+
             // x
-            appendLittleEndian(dump, data[0u]);
+            appendLittleEndian(dump, std::log(data[0u]));
 
             // y
-            appendLittleEndian(dump, data[1u]);
+            appendLittleEndian(dump, std::log(data[1u]));
 
             // z
-            appendLittleEndian(dump, data[2u]);
+            appendLittleEndian(dump, std::log(data[2u]));
 
             byteOffset += 3u * sizeof(float);
         }

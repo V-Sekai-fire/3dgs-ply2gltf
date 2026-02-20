@@ -682,9 +682,10 @@ int main(int argc, char* argv[])
             float z{sourceData[2u]}; 
 
             // No rotation required, as scale impacted by rotation.
-            data[0u] = x;
-            data[1u] = y;
-            data[2u] = z;
+            // Log to linear conversion.
+            data[0u] = std::exp(x);
+            data[1u] = std::exp(y);
+            data[2u] = std::exp(z);
 
             byteOffset += 3u * sizeof(float);
         }
