@@ -42,7 +42,7 @@ constexpr double d3_neg90[7][7] = {
     { 0.f, 0.f, 0.f, 0.f, -0.96824584f, 0.f, 0.25f  }
 };
 
-std::vector<float> rotateSH_XAxisPos90(const float* coefficients, std::uint32_t l)
+std::vector<float> rotateSH_XAxisNeg90(const float* coefficients, std::uint32_t l)
 {
     std::vector<float> result{};
     
@@ -434,15 +434,15 @@ int main(int argc, char* argv[])
         }
         else if (line.find("element vertex") != std::string::npos)
         {
-#ifdef _WIN32
-            auto result = sscanf_s(line.c_str(), "element vertex %u", &count);
-#else
             auto result = std::sscanf(line.c_str(), "element vertex %u", &count);
-#endif
             if (result < 0)
             {
                 return -1;
             }
+        }
+        else if (line.find("comment") != std::string::npos)
+        {
+            continue;
         }
         else if (line == "end_header")
         {
@@ -453,12 +453,8 @@ int main(int argc, char* argv[])
             char componentType[256u];
             char name[256u];
 
-#ifdef _WIN32
-            auto result = sscanf_s(line.c_str(), "property %s %s", componentType, 256u, name, 256u);
-#else
             auto result = std::sscanf(line.c_str(), "property %255s %255s", componentType, name);
-#endif
-            if (result != 2)
+            if (result < 0)
             {
                 printf("Error: Failed to parse property line: '%s'\n", line.c_str());
                 return -1;
@@ -692,9 +688,10 @@ int main(int argc, char* argv[])
             float z{sourceData[2u]}; 
 
             // No rotation required, as scale impacted by rotation.
-            data[0u] = x;
-            data[1u] = y;
-            data[2u] = z;
+            // Log to linear conversion.
+            data[0u] = std::exp(x);
+            data[1u] = std::exp(y);
+            data[2u] = std::exp(z);
 
             byteOffset += 3u * sizeof(float);
         }
@@ -751,9 +748,9 @@ int main(int argc, char* argv[])
             if (convert)
             {
                 // Rotate the spherical harmonics as well by -90 degrees around x-axis with optimized Wigner d-Matrix.
-                r = rotateSH_XAxisPos90(r.data(), l);
-                g = rotateSH_XAxisPos90(g.data(), l);
-                b = rotateSH_XAxisPos90(b.data(), l);
+                r = rotateSH_XAxisNeg90(r.data(), l);
+                g = rotateSH_XAxisNeg90(g.data(), l);
+                b = rotateSH_XAxisNeg90(b.data(), l);
             }
 
             std::uint32_t band_offset{0u};

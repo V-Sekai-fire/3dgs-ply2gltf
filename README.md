@@ -11,6 +11,10 @@ Otherwise it is assumed that the original data is already right-handed y-up as d
 
 Using the optional `--dump` flag is writing back the generated glTF binary buffer to the PLY file `some_3dgs_dump.ply`.
 
+## Changelog
+
+- 2026-02-20 Scale is stored in linear space
+
 ## 3DGS for glTF extension
 
 - https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_gaussian_splatting
@@ -41,7 +45,8 @@ Please make sure, that the given dependencies are fulfilled and your toolchain d
 
 ## Credits
 
- - Xin Zhao for the Spherical Harmonics rotation discussions and overall debugging
+- Xin Zhao for the Spherical Harmonics rotation discussions and overall debugging
+- K. S. Ernest Lee for cross platform code, C++20 and math library improvements 
 
 ## References
 
