@@ -45,7 +45,8 @@ Please make sure, that the given dependencies are fulfilled and your toolchain d
 
 ## Credits
 
- - Xin Zhao for the Spherical Harmonics rotation discussions and overall debugging
+- Xin Zhao for the Spherical Harmonics rotation discussions and overall debugging
+- K. S. Ernest Lee for cross platform code, C++20 and math library improvements 
 
 ## References
 
